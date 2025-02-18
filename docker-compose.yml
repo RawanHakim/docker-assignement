@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  producer:
+     build: ./producer
+     container_name: producer
+     networks: 
+          - my_network
+  consumer:
+     build: ./consumer
+     container_name: consumer
+     depends_on: 
+          - producer
+     networks:
+          - my_network
+     volumes:
+          - data_volume:/data
+
+networks:
+   my_network:
+
+volumes:
+   data_volume:
